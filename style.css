@@ -1,0 +1,74 @@
+*:root {
+  ---corPincipal: #9b59b6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: beige;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.inputValueBtn {
+  width: 500px;
+  height: auto;
+  background-color: aqua;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.inputValueBtn button {
+  width: 50px;
+  height: 50px;
+  background-color: #9b59b6;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.inputValueBtn button i {
+  color: white;
+  background-color: var(---corPincipal);
+}
+
+.formChange {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  background-color: white;
+  border: none;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+  margin: 20px;
+}
+
+.formChange input[type="text"] {
+  background-color: white;
+  width: 89%;
+  height: 20px;
+  border: none;
+  outline: none;
+}
+
+.formChange button {
+  background-color: var(---corPincipal);
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 20px;
+  color: white;
+}
