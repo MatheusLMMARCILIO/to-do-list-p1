@@ -26,20 +26,6 @@ body {
   flex-direction: column;
 }
 
-.inputValueBtn button {
-  width: 50px;
-  height: 50px;
-  background-color: #9b59b6;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-}
-
-.inputValueBtn button i {
-  color: white;
-  background-color: var(---corPincipal);
-}
-
 .formChange {
   width: 100%;
   height: 40px;
@@ -71,4 +57,15 @@ body {
   cursor: pointer;
   font-size: 20px;
   color: white;
+}
+
+.btnFilters button {
+  width: 150px;
+  height: 40px;
+  background-color: var(---corPincipal);
+  border: 1px solid var(---corPincipal);
+  cursor: pointer;
+  border-radius: 50px;
+  color: white;
+  font-weight: bolder;
 }
