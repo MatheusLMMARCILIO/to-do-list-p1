@@ -87,16 +87,23 @@ function createblock(dados) {
   const elSpan = document.createElement('span')
   elSpan.textContent = dados.text
 
+  elInput.addEventListener('change', () => {
+    
 if (dados.done) {
   elP.classList.add('done')
+} else {
+  elP.classList.remove('done')
 }
+
+attLocalS()
+
+  })
 
   const elDivTrash = document.createElement('div')
   elDivTrash.classList.add('trashbtn')
 
 
 
-attLocalS()
 
 
 
