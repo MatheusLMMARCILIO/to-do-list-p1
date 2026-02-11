@@ -1,7 +1,6 @@
 const input = document.querySelector(".inputValueText");
 const btnNewAsk = document.querySelector(".newAsk");
 const trash = document.querySelector(".trashbtn");
-const trashicon = document.querySelector("#trash");
 const skipicon = document.querySelector("#skip");
 const formDataText = document.querySelector(".textdata");
 const taskBlock = document.querySelector('.activities')
@@ -27,7 +26,7 @@ const dados = {
   data: dataCompleta,
 };
 
-const task = localStorage.getItem("task");
+const task = JSON.parse(localStorage.getItem("task")) || []
 
 btnNewAsk.addEventListener("click", (e) => {
   e.preventDefault();
@@ -50,11 +49,15 @@ btnNewAsk.addEventListener("click", (e) => {
   });
 
   const dados = {
+    id: Date.now(),
     text: input.value,
     data: `${data} às ${hour}`,
+    done: false
   };
 
-  localStorage.setItem("task", JSON.stringify(dados));
+
+  task.push(dados)
+  localStorage.setItem("task", JSON.stringify(task));
 
   createblock(dados);
 
@@ -73,50 +76,51 @@ function createblock(dados) {
   const elInput = document.createElement('input')
   elInput.type = 'checkbox'
   elInput.id = 'doit'
+  elInput.checked = dados.done
 
   const elDivform = document.createElement('div')
   elDivform.classList.add("textdata")
 
-const elP = document.createElement('p')
-elP.innerHTML = dados.text
+  const elP = document.createElement('p')
+  elP.textContent = dados.data
 
-const elSpan = document.createElement('span')
-elSpan.innerHTML = dados.data
+  const elSpan = document.createElement('span')
+  elSpan.textContent = dados.text
 
-const elDivTrash = document.createElement('div')
-elDivTrash.classList.add('trashbtn')
+if (dados.done) {
+  elP.classList.add('done')
+}
 
-const iSkip = document.createElement('i')
-iSkip.id = 'skip'
-iSkip.classList.add('fa-solid', 'fa-x')
-
-const iTrash = document.createElement('i')
-iTrash.id = 'trash'
-iTrash.classList.add('fa-solid', 'fa-trash', 'fa-bounce', 'fa-lg')
- 
-elDivInput.appendChild(elInput);
-
-elDivform.appendChild(elP);
-elDivform.appendChild(elSpan);
-
-elDivTrash.appendChild(iSkip);
-elDivTrash.appendChild(iTrash);
-
-elDiv.appendChild(elDivInput);
-elDiv.appendChild(elDivform);
-elDiv.appendChild(elDivTrash);
+  const elDivTrash = document.createElement('div')
+  elDivTrash.classList.add('trashbtn')
 
 
+
+attLocalS()
+
+
+
+
+  elDivInput.appendChild(elInput);
+
+  elDivform.appendChild(elSpan);
+  elDivform.appendChild(elP);
+
+  elDiv.appendChild(elDivInput);
+  elDiv.appendChild(elDivform);
+  elDiv.appendChild(elDivTrash);
+  taskBlock.appendChild(elDiv);
 
 
 
 }
 
-trash.addEventListener("mouseover", () => {
-  trashicon.style.display = "flex";
-  skipicon.style.display = "none";
-});
-trash.addEventListener("mouseout", () => {
-  trashicon.style.display = "none";
-  skipicon.style.display = "flex";
+function attLocalS() {
+  localStorage.setItem('task', JSON.stringify(task))
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  task.forEach(item => {
+    createblock(item);
+  });
 });

@@ -266,3 +266,8 @@ cursor: pointer;
 #skip {
   color: #00000098;
 }
+
+.done {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
